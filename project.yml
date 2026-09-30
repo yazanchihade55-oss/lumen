@@ -1,0 +1,20 @@
+name: Lumen
+options:
+  bundleIdPrefix: com.yazkryx
+targets:
+  Lumen:
+    type: application
+    platform: iOS
+    deploymentTarget: "16.0"
+    sources: [Lumen]
+    info:
+      path: Lumen/Info.plist
+      properties:
+        CFBundleDisplayName: Lumen
+        UILaunchScreen: {}
+        NSPhotoLibraryUsageDescription: Lumen braucht Zugriff auf deine Videos.
+        NSPhotoLibraryAddUsageDescription: Lumen speichert bearbeitete Videos.
+    settings:
+      PRODUCT_BUNDLE_IDENTIFIER: com.yazkryx.lumen
+      SWIFT_VERSION: "5.0"
+      CODE_SIGNING_ALLOWED: "NO"
