@@ -1,0 +1,16 @@
+name: Build IPA
+on: [workflow_dispatch, push]
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: brew install xcodegen && xcodegen
+      - run: xcodebuild -project Lumen.xcodeproj -scheme Lumen -configuration Release -sdk iphoneos -derivedDataPath build CODE_SIGNING_ALLOWED=NO CODE_SIGNING_REQUIRED=NO CODE_SIGN_IDENTITY=""
+      - run: |
+          mkdir Payload && cp -R build/Build/Products/Release-iphoneos/Lumen.app Payload/
+          zip -r Lumen-unsigned.ipa Payload
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Lumen-ipa
+          path: Lumen-unsigned.ipa
